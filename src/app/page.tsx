@@ -1,65 +1,107 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { CommandPalette } from "@/components/command-palette";
+import { ContentView } from "@/components/content/content-view";
+import { usePanel } from "@/components/panel-context";
+import { MemberDetailPanel } from "@/components/members/member-detail-panel";
+import { MembersTable } from "@/components/members/members-table";
+import { PulseView } from "@/components/pulse/pulse-view";
+import { SettingsView } from "@/components/settings/settings-view";
+import { Sidebar, type ActiveView } from "@/components/sidebar";
+
+const PANEL_WIDTH = 380;
+
+function CommunityShell() {
+  const { isOpen, closePanel } = usePanel();
+  const [activeView, setActiveView] = useState<ActiveView>("members");
+  const [isCommandOpen, setIsCommandOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (activeView !== "members") {
+      closePanel();
+    }
+  }, [activeView, closePanel]);
+
+  useEffect(() => {
+    const checkViewport = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkViewport();
+    window.addEventListener("resize", checkViewport);
+    return () => window.removeEventListener("resize", checkViewport);
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="h-full overflow-hidden">
+      <div className="h-full overflow-hidden">
+        <Sidebar
+          activeView={activeView}
+          setActiveView={setActiveView}
+          onOpenCommand={() => setIsCommandOpen(true)}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+
+        <main className="ml-0 flex h-full flex-row pb-16 md:ml-16 md:pb-0 lg:ml-60">
+          <section className="flex-1 overflow-y-auto bg-(--os-bg)">
+            {activeView === "members" && <MembersTable />}
+            {activeView === "pulse" && <PulseView />}
+            {activeView === "content" && <ContentView />}
+            {activeView === "settings" && <SettingsView />}
+          </section>
+
+          <AnimatePresence>
+            {activeView === "members" && isOpen && isMobile && (
+              <>
+                <motion.div
+                  key="mobile-panel-backdrop"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-40 bg-black/50"
+                  onClick={closePanel}
+                />
+                <motion.div
+                  key="mobile-panel"
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  exit={{ y: "100%" }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  className="fixed inset-x-0 bottom-0 z-50 h-[90vh] overflow-hidden rounded-t-2xl bg-(--os-surface)"
+                >
+                  <MemberDetailPanel />
+                </motion.div>
+              </>
+            )}
+
+            {activeView === "members" && isOpen && !isMobile && (
+              <motion.div
+                key="detail-panel"
+                initial={{ x: PANEL_WIDTH, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: PANEL_WIDTH, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                className="absolute top-0 right-0 z-10 h-full w-95 border-l bg-(--os-surface)"
+                style={{ borderColor: "var(--os-border-subtle)" }}
+              >
+                <MemberDetailPanel />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </main>
+      </div>
+
+      <CommandPalette
+        open={isCommandOpen}
+        onOpenChange={setIsCommandOpen}
+        setActiveView={setActiveView}
+      />
     </div>
   );
+}
+
+export default function HomePage() {
+  return <CommunityShell />;
 }
