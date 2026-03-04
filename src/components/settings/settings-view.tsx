@@ -17,7 +17,7 @@ type ToggleProps = {
 };
 
 const inputClass =
-  "w-full rounded-md border border-[var(--os-border-subtle)] bg-[var(--os-bg)] px-3 py-2 text-sm text-[var(--os-text-primary)] outline-none focus:ring-1 focus:ring-[var(--os-accent)]";
+  "w-full rounded-md border border-[var(--os-border-subtle)] bg-(--os-bg) px-3 py-2 text-sm text-[var(--os-text-primary)] outline-none focus:ring-1 focus:ring-[var(--os-accent)]";
 
 const sections: Array<{ id: SettingsSection; label: string }> = [
   { id: "general", label: "General" },
@@ -35,8 +35,8 @@ function Toggle({ enabled, onChange }: ToggleProps) {
       onClick={() => onChange(!enabled)}
       className={`relative inline-flex h-6 w-11 items-center rounded-full border transition ${
         enabled
-          ? "border-[var(--os-accent)] bg-[var(--os-accent)]"
-          : "border-[var(--os-border-subtle)] bg-[var(--os-bg)]"
+          ? "border-[var(--os-accent)] bg-(--os-accent)"
+          : "border-[var(--os-border-subtle)] bg-(--os-bg)"
       }`}
       aria-pressed={enabled}
     >
@@ -67,9 +67,9 @@ export function SettingsView() {
   const [notifRevenueMilestone, setNotifRevenueMilestone] = useState(true);
 
   return (
-    <div className="h-full bg-[var(--os-bg)] p-6">
+    <div className="h-full bg-(--os-bg) p-6">
       <div className="flex h-full flex-col gap-4 lg:flex-row">
-        <aside className="w-full rounded-lg border border-[var(--os-border-subtle)] bg-[var(--os-surface)] p-2 lg:w-[200px] lg:shrink-0">
+        <aside className="w-full rounded-lg border border-[var(--os-border-subtle)] bg-(--os-surface) p-2 lg:w-[200px] lg:shrink-0">
           <ul className="space-y-1">
             {sections.map((section) => {
               const isActive = activeSection === section.id;
@@ -80,8 +80,8 @@ export function SettingsView() {
                     onClick={() => setActiveSection(section.id)}
                     className={`w-full border-l-2 px-3 py-2 text-left text-xs tracking-[0.1em] transition ${
                       isActive
-                        ? "border-[var(--os-accent)] bg-[var(--os-accent-glow)] text-[var(--os-text-primary)]"
-                        : "border-transparent text-[var(--os-text-muted)] hover:bg-[var(--os-accent-glow)]/60 hover:text-[var(--os-text-primary)]"
+                        ? "border-[var(--os-accent)] bg-(--os-accent-glow) text-[var(--os-text-primary)]"
+                        : "border-transparent text-[var(--os-text-muted)] hover:bg-(--os-accent-glow)/60 hover:text-[var(--os-text-primary)]"
                     }`}
                   >
                     {section.label}
@@ -92,7 +92,7 @@ export function SettingsView() {
           </ul>
         </aside>
 
-        <section className="min-w-0 flex-1 rounded-lg border border-[var(--os-border-subtle)] bg-[var(--os-surface)] p-5">
+        <section className="min-w-0 flex-1 rounded-lg border border-[var(--os-border-subtle)] bg-(--os-surface) p-5">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeSection}
@@ -146,7 +146,7 @@ export function SettingsView() {
 
                   <button
                     type="button"
-                    className="rounded-md bg-[var(--os-accent)] px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
+                    className="rounded-md bg-(--os-accent) px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
                   >
                     Save Changes
                   </button>
@@ -210,7 +210,7 @@ export function SettingsView() {
 
                   <button
                     type="button"
-                    className="rounded-md bg-[var(--os-accent)] px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
+                    className="rounded-md bg-(--os-accent) px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
                   >
                     Save Changes
                   </button>
@@ -257,7 +257,7 @@ export function SettingsView() {
                   ].map((item) => (
                     <div
                       key={item.label}
-                      className="flex items-start justify-between rounded-md border border-[var(--os-border-subtle)] bg-[var(--os-bg)]/50 p-3"
+                      className="flex items-start justify-between rounded-md border border-[var(--os-border-subtle)] bg-(--os-bg)/50 p-3"
                     >
                       <div>
                         <p className="text-sm text-[var(--os-text-primary)]">
@@ -279,12 +279,12 @@ export function SettingsView() {
                     Billing
                   </h2>
 
-                  <div className="rounded-lg border border-[var(--os-border-subtle)] bg-[var(--os-bg)]/40 p-4">
+                  <div className="rounded-lg border border-[var(--os-border-subtle)] bg-(--os-bg)/40 p-4">
                     <div className="mb-2 flex items-center justify-between">
                       <p className="text-sm font-medium text-[var(--os-text-primary)]">
                         Pro Plan — $99/mo
                       </p>
-                      <span className="rounded-full bg-[var(--os-accent)]/20 px-2 py-0.5 text-[10px] font-medium text-[var(--os-accent)]">
+                      <span className="rounded-full bg-(--os-accent)/20 px-2 py-0.5 text-[10px] font-medium text-[var(--os-accent)]">
                         Active
                       </span>
                     </div>
@@ -299,13 +299,13 @@ export function SettingsView() {
                   <div className="flex gap-2">
                     <button
                       type="button"
-                      className="rounded-md bg-[var(--os-accent)] px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
+                      className="rounded-md bg-(--os-accent) px-4 py-2 text-sm font-medium text-white transition hover:opacity-90"
                     >
                       Upgrade Plan
                     </button>
                     <button
                       type="button"
-                      className="rounded-md border border-[var(--os-border-subtle)] px-4 py-2 text-sm text-[var(--os-text-muted)] transition hover:bg-[var(--os-accent-glow)] hover:text-[var(--os-text-primary)]"
+                      className="rounded-md border border-[var(--os-border-subtle)] px-4 py-2 text-sm text-[var(--os-text-muted)] transition hover:bg-(--os-accent-glow) hover:text-[var(--os-text-primary)]"
                     >
                       Cancel Subscription
                     </button>
@@ -326,14 +326,14 @@ export function SettingsView() {
                     {["Slack", "Discord", "Stripe", "Zapier"].map((app) => (
                       <div
                         key={app}
-                        className="flex items-center justify-between rounded-md border border-[var(--os-border-subtle)] bg-[var(--os-bg)]/40 px-3 py-2"
+                        className="flex items-center justify-between rounded-md border border-[var(--os-border-subtle)] bg-(--os-bg)/40 px-3 py-2"
                       >
                         <span className="text-sm text-[var(--os-text-primary)]">
                           {app}
                         </span>
                         <button
                           type="button"
-                          className="rounded-md border border-[var(--os-border-subtle)] px-2 py-1 text-xs text-[var(--os-text-muted)] transition hover:bg-[var(--os-accent-glow)] hover:text-[var(--os-text-primary)]"
+                          className="rounded-md border border-[var(--os-border-subtle)] px-2 py-1 text-xs text-[var(--os-text-muted)] transition hover:bg-(--os-accent-glow) hover:text-[var(--os-text-primary)]"
                         >
                           Connect
                         </button>
@@ -359,13 +359,13 @@ export function SettingsView() {
                     </p>
                     <button
                       type="button"
-                      className="mt-3 rounded-md bg-[var(--os-status-churned)] px-3 py-2 text-sm font-medium text-white transition hover:opacity-90"
+                      className="mt-3 rounded-md bg-(--os-status-churned) px-3 py-2 text-sm font-medium text-white transition hover:opacity-90"
                     >
                       Delete Community
                     </button>
                   </div>
 
-                  <div className="rounded-lg border border-[var(--os-border-subtle)] bg-[var(--os-bg)]/40 p-4">
+                  <div className="rounded-lg border border-[var(--os-border-subtle)] bg-(--os-bg)/40 p-4">
                     <p className="text-sm font-medium text-[var(--os-text-primary)]">
                       Export All Data
                     </p>
@@ -375,7 +375,7 @@ export function SettingsView() {
                     </p>
                     <button
                       type="button"
-                      className="mt-3 rounded-md border border-[var(--os-border-subtle)] px-3 py-2 text-sm text-[var(--os-text-muted)] transition hover:bg-[var(--os-accent-glow)] hover:text-[var(--os-text-primary)]"
+                      className="mt-3 rounded-md border border-[var(--os-border-subtle)] px-3 py-2 text-sm text-[var(--os-text-muted)] transition hover:bg-(--os-accent-glow) hover:text-[var(--os-text-primary)]"
                     >
                       Export Data
                     </button>

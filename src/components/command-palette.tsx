@@ -52,7 +52,7 @@ export function CommandPalette({
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.96, opacity: 0 }}
             transition={{ duration: 0.15 }}
-            className="w-[560px] overflow-hidden rounded-xl border border-[var(--os-border-subtle)] bg-[var(--os-surface)] shadow-2xl"
+            className="w-140 overflow-hidden rounded-xl border border-[var(--os-border-subtle)] bg-(--os-surface) shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             <Command className="w-full bg-transparent text-[var(--os-text-primary)]">
@@ -79,7 +79,7 @@ export function CommandPalette({
                         setActiveView("members");
                         onOpenChange(false);
                       }}
-                      className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-[var(--os-text-muted)] data-[selected=true]:bg-[var(--os-accent-glow)] data-[selected=true]:text-[var(--os-text-primary)]"
+                      className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-[var(--os-text-muted)] data-[selected=true]:bg-(--os-accent-glow) data-[selected=true]:text-[var(--os-text-primary)]"
                     >
                       <div
                         className="flex size-7 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold text-[var(--os-bg)]"
@@ -102,7 +102,7 @@ export function CommandPalette({
                   ))}
                 </Command.Group>
 
-                <Command.Separator className="my-2 h-px bg-[var(--os-border-subtle)]" />
+                <Command.Separator className="my-2 h-px bg-(--os-border-subtle)" />
 
                 <Command.Group
                   heading="Navigation"
@@ -114,7 +114,7 @@ export function CommandPalette({
                       setActiveView("members");
                       onOpenChange(false);
                     }}
-                    className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-[var(--os-text-muted)] data-[selected=true]:bg-[var(--os-accent-glow)] data-[selected=true]:text-[var(--os-text-primary)]"
+                    className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-[var(--os-text-muted)] data-[selected=true]:bg-(--os-accent-glow) data-[selected=true]:text-[var(--os-text-primary)]"
                   >
                     <Users className="size-4" />
                     Members
@@ -125,7 +125,7 @@ export function CommandPalette({
                       setActiveView("pulse");
                       onOpenChange(false);
                     }}
-                    className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-[var(--os-text-muted)] data-[selected=true]:bg-[var(--os-accent-glow)] data-[selected=true]:text-[var(--os-text-primary)]"
+                    className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-[var(--os-text-muted)] data-[selected=true]:bg-(--os-accent-glow) data-[selected=true]:text-[var(--os-text-primary)]"
                   >
                     <Activity className="size-4" />
                     Pulse
@@ -136,7 +136,7 @@ export function CommandPalette({
                       setActiveView("content");
                       onOpenChange(false);
                     }}
-                    className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-[var(--os-text-muted)] data-[selected=true]:bg-[var(--os-accent-glow)] data-[selected=true]:text-[var(--os-text-primary)]"
+                    className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-[var(--os-text-muted)] data-[selected=true]:bg-(--os-accent-glow) data-[selected=true]:text-[var(--os-text-primary)]"
                   >
                     <Newspaper className="size-4" />
                     Content
@@ -147,14 +147,14 @@ export function CommandPalette({
                       setActiveView("settings");
                       onOpenChange(false);
                     }}
-                    className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-[var(--os-text-muted)] data-[selected=true]:bg-[var(--os-accent-glow)] data-[selected=true]:text-[var(--os-text-primary)]"
+                    className="flex cursor-pointer items-center gap-3 rounded-md px-3 py-2 text-sm text-[var(--os-text-muted)] data-[selected=true]:bg-(--os-accent-glow) data-[selected=true]:text-[var(--os-text-primary)]"
                   >
                     <Settings className="size-4" />
                     Settings
                   </Command.Item>
                 </Command.Group>
 
-                <Command.Separator className="my-2 h-px bg-[var(--os-border-subtle)]" />
+                <Command.Separator className="my-2 h-px bg-(--os-border-subtle)" />
 
                 <Command.Group
                   heading="Actions"
@@ -166,7 +166,7 @@ export function CommandPalette({
                         key={action}
                         value={action}
                         onSelect={() => onOpenChange(false)}
-                        className="cursor-pointer rounded-md px-3 py-2 text-sm text-[var(--os-text-muted)] data-[selected=true]:bg-[var(--os-accent-glow)] data-[selected=true]:text-[var(--os-text-primary)]"
+                        className="cursor-pointer rounded-md px-3 py-2 text-sm text-[var(--os-text-muted)] data-[selected=true]:bg-(--os-accent-glow) data-[selected=true]:text-[var(--os-text-primary)]"
                       >
                         {action}
                       </Command.Item>

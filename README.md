@@ -2,7 +2,7 @@
 
 A high-fidelity, dark-themed community management dashboard built to demonstrate design-engineering craft — pixel-precise components, interaction polish, and an AI-assisted development workflow.
 
-**[Live Demo →](https://community-os.vercel.app)**
+**[Live Demo →](https://community-os-chi.vercel.app)**
 
 ![Community OS Screenshot](./public/screenshot.png)
 

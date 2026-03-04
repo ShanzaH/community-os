@@ -42,7 +42,7 @@ function TypeIcon({ type }: { type: ContentPost["type"] }) {
   if (type === "announcement") {
     return (
       <div className="flex size-8 items-center justify-center rounded-md bg-[color-mix(in_srgb,var(--os-status-at-risk)_22%,transparent)]">
-        <Megaphone className="size-4 text-(--os-status-at-risk)" />
+        <Megaphone className="size-4 text-[var(--os-status-at-risk)]" />
       </div>
     );
   }
@@ -50,14 +50,14 @@ function TypeIcon({ type }: { type: ContentPost["type"] }) {
   if (type === "question") {
     return (
       <div className="flex size-8 items-center justify-center rounded-md bg-[color-mix(in_srgb,var(--os-status-active)_22%,transparent)]">
-        <HelpCircle className="size-4 text-(--os-status-active)" />
+        <HelpCircle className="size-4 text-[var(--os-status-active)]" />
       </div>
     );
   }
 
   return (
     <div className="flex size-8 items-center justify-center rounded-md bg-[color-mix(in_srgb,var(--os-accent)_22%,transparent)]">
-      <MessageSquare className="size-4 text-(--os-accent)" />
+      <MessageSquare className="size-4 text-[var(--os-accent)]" />
     </div>
   );
 }
@@ -65,7 +65,7 @@ function TypeIcon({ type }: { type: ContentPost["type"] }) {
 function StatusPill({ status }: { status: ContentPost["status"] }) {
   if (status === "pinned") {
     return (
-      <span className="inline-flex items-center gap-1 rounded-full bg-[var(--os-status-at-risk)]/15 px-2 py-0.5 text-xs font-medium text-(--os-status-at-risk)">
+      <span className="inline-flex items-center gap-1 rounded-full bg-(--os-status-at-risk)/15 px-2 py-0.5 text-xs font-medium text-[var(--os-status-at-risk)]">
         <Pin className="size-3" />
         Pinned
       </span>
@@ -74,14 +74,14 @@ function StatusPill({ status }: { status: ContentPost["status"] }) {
 
   if (status === "hidden") {
     return (
-      <span className="rounded-full bg-[color-mix(in_srgb,var(--os-status-churned)_15%,transparent)] px-2 py-0.5 text-[10px] font-medium text-(--os-status-churned)">
+      <span className="rounded-full bg-[color-mix(in_srgb,var(--os-status-churned)_15%,transparent)] px-2 py-0.5 text-[10px] font-medium text-[var(--os-status-churned)]">
         Hidden
       </span>
     );
   }
 
   return (
-    <span className="rounded-full bg-(--os-bg) px-2 py-0.5 text-[10px] font-medium text-(--os-text-muted)">
+    <span className="rounded-full bg-(--os-bg) px-2 py-0.5 text-[10px] font-medium text-[var(--os-text-muted)]">
       Published
     </span>
   );
@@ -101,7 +101,7 @@ export function ContentView() {
   return (
     <div className="h-full overflow-y-auto bg-(--os-bg) p-6">
       <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <h1 className="text-lg font-semibold text-(--os-text-primary)">
+        <h1 className="text-lg font-semibold text-[var(--os-text-primary)]">
           Content
         </h1>
 
@@ -115,8 +115,8 @@ export function ContentView() {
                 onClick={() => setActiveFilter(filter.value)}
                 className={`rounded-full border px-3 py-1 text-xs transition ${
                   isActive
-                    ? "border-(--os-accent) bg-(--os-accent) text-white"
-                    : "border-(--os-border-subtle) text-(--os-text-muted) hover:bg-(--os-accent-glow) hover:text-(--os-text-primary)"
+                    ? "border-[var(--os-accent)] bg-(--os-accent) text-white"
+                    : "border-[var(--os-border-subtle)] text-[var(--os-text-muted)] hover:bg-(--os-accent-glow) hover:text-[var(--os-text-primary)]"
                 }`}
               >
                 {filter.label}
@@ -127,7 +127,7 @@ export function ContentView() {
       </div>
 
       {filteredPosts.length === 0 ? (
-        <div className="flex h-[60vh] flex-col items-center justify-center gap-2 text-center text-(--os-text-muted)">
+        <div className="flex h-[60vh] flex-col items-center justify-center gap-2 text-center text-[var(--os-text-muted)]">
           <Inbox className="size-5" />
           <p className="text-sm">No posts in this space yet</p>
         </div>
@@ -137,7 +137,7 @@ export function ContentView() {
           variants={listVariants}
           initial="hidden"
           animate="show"
-          className="divide-y divide-(--os-border-subtle)"
+          className="divide-y divide-[var(--os-border-subtle)]"
         >
           {filteredPosts.map((post) => (
             <motion.li
@@ -150,21 +150,21 @@ export function ContentView() {
               </div>
 
               <div className="min-w-0 flex-1">
-                <p className="line-clamp-2 text-sm font-medium text-(--os-text-primary) md:line-clamp-1 md:truncate">
+                <p className="line-clamp-2 text-sm font-medium text-[var(--os-text-primary)] md:line-clamp-1 md:truncate">
                   {post.title}
                 </p>
-                <p className="mt-1 truncate text-xs text-(--os-text-muted)">
+                <p className="mt-1 truncate text-xs text-[var(--os-text-muted)]">
                   {post.excerpt}
                 </p>
-                <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-(--os-text-muted)">
+                <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-[var(--os-text-muted)]">
                   <div
-                    className="flex size-5 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold text-(--os-bg)"
+                    className="flex size-5 shrink-0 items-center justify-center rounded-full text-[10px] font-semibold text-[var(--os-bg)]"
                     style={{ backgroundColor: post.author.avatarColor }}
                   >
                     {post.author.initials}
                   </div>
                   <span className="whitespace-nowrap">{post.author.name}</span>
-                  <span className="rounded-full border border-(--os-border-subtle) px-1.5 py-0.5 text-[10px]">
+                  <span className="rounded-full border border-[var(--os-border-subtle)] px-1.5 py-0.5 text-[10px]">
                     {post.space}
                   </span>
                   <span className="ml-auto whitespace-nowrap md:ml-0">
@@ -175,7 +175,7 @@ export function ContentView() {
 
               <div className="ml-0 flex shrink-0 flex-wrap items-center justify-between gap-2 md:ml-3 md:flex-col md:items-end md:justify-start">
                 <StatusPill status={post.status} />
-                <div className="flex flex-wrap items-center gap-2 text-xs text-(--os-text-muted) md:flex-nowrap">
+                <div className="flex flex-wrap items-center gap-2 text-xs text-[var(--os-text-muted)] md:flex-nowrap">
                   <span className="inline-flex items-center gap-1">
                     <ThumbsUp className="size-3.5" />
                     {post.likes}

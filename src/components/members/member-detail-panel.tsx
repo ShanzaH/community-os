@@ -71,14 +71,14 @@ export function MemberDetailPanel() {
   const isOnlineNow = selectedMember.lastSeen === "Online now";
 
   return (
-    <div className="flex h-full min-w-0 flex-col overflow-x-hidden bg-[var(--os-surface)]">
-      <div className="mx-auto mt-3 mb-1 h-1 w-10 rounded-full bg-[var(--os-border-subtle)] md:hidden" />
+    <div className="flex h-full min-w-0 flex-col overflow-x-hidden bg-(--os-surface)">
+      <div className="mx-auto mt-3 mb-1 h-1 w-10 rounded-full bg-(--os-border-subtle) md:hidden" />
 
-      <header className="sticky top-0 z-20 border-b border-[var(--os-border-subtle)] bg-[var(--os-surface)] p-4">
+      <header className="sticky top-0 z-20 border-b border-[var(--os-border-subtle)] bg-(--os-surface) p-4">
         <button
           type="button"
           onClick={closePanel}
-          className="absolute top-3 right-3 rounded-md p-2 text-[var(--os-text-muted)] transition hover:bg-[var(--os-accent-glow)] hover:text-[var(--os-text-primary)]"
+          className="absolute top-3 right-3 rounded-md p-2 text-[var(--os-text-muted)] transition hover:bg-(--os-accent-glow) hover:text-[var(--os-text-primary)]"
           aria-label="Close detail panel"
         >
           <X className="size-4" />
@@ -104,8 +104,8 @@ export function MemberDetailPanel() {
             {isOnlineNow && (
               <div className="mt-2 inline-flex items-center gap-2 text-xs text-[var(--os-status-active)]">
                 <span className="relative flex size-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--os-status-active)] opacity-70" />
-                  <span className="relative inline-flex size-2 rounded-full bg-[var(--os-status-active)]" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-(--os-status-active) opacity-70" />
+                  <span className="relative inline-flex size-2 rounded-full bg-(--os-status-active)" />
                 </span>
                 Online now
               </div>
@@ -116,7 +116,7 @@ export function MemberDetailPanel() {
 
       <ScrollArea className="flex-1">
         <div className="p-4">
-          <section className="grid grid-cols-2 overflow-hidden rounded-lg border border-[var(--os-border-subtle)] bg-[var(--os-surface)]">
+          <section className="grid grid-cols-2 overflow-hidden rounded-lg border border-[var(--os-border-subtle)] bg-(--os-surface)">
             <div className="border-r border-b border-[var(--os-border-subtle)] p-3">
               <p className="text-[10px] tracking-[0.08em] uppercase text-[var(--os-text-muted)]">
                 MRR
@@ -140,9 +140,9 @@ export function MemberDetailPanel() {
               <p className="mt-1 text-sm font-medium text-[var(--os-text-primary)]">
                 {selectedMember.engagementScore}
               </p>
-              <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-[var(--os-border-subtle)]">
+              <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-(--os-border-subtle)">
                 <div
-                  className="h-full rounded-full bg-[var(--os-accent)]"
+                  className="h-full rounded-full bg-(--os-accent)"
                   style={{ width: `${selectedMember.engagementScore}%` }}
                 />
               </div>
@@ -171,7 +171,7 @@ export function MemberDetailPanel() {
                 <motion.li
                   key={`${item.action}-${item.timestamp}`}
                   variants={timelineItem}
-                  className="flex min-w-0 items-center justify-between gap-3 rounded-md border border-[var(--os-border-subtle)] bg-[var(--os-bg)]/40 px-3 py-2"
+                  className="flex min-w-0 items-center justify-between gap-3 rounded-md border border-[var(--os-border-subtle)] bg-(--os-bg)/40 px-3 py-2"
                 >
                   <div className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden">
                     <span
@@ -192,17 +192,17 @@ export function MemberDetailPanel() {
         </div>
       </ScrollArea>
 
-      <footer className="sticky bottom-0 z-20 border-t border-[var(--os-border-subtle)] bg-[var(--os-surface)] px-4 py-3">
+      <footer className="sticky bottom-0 z-20 border-t border-[var(--os-border-subtle)] bg-(--os-surface) px-4 py-3">
         <div className="space-y-2">
           <button
             type="button"
-            className="w-full rounded-md border border-[var(--os-border-subtle)] px-3 py-2 text-xs font-medium text-[var(--os-text-primary)] transition hover:bg-[var(--os-accent-glow)]"
+            className="w-full rounded-md border border-[var(--os-border-subtle)] px-3 py-2 text-xs font-medium text-[var(--os-text-primary)] transition hover:bg-(--os-accent-glow)"
           >
             Send Message
           </button>
           <button
             type="button"
-            className="w-full rounded-md border border-[var(--os-border-subtle)] px-3 py-2 text-xs font-medium text-[var(--os-text-primary)] transition hover:bg-[var(--os-accent-glow)]"
+            className="w-full rounded-md border border-[var(--os-border-subtle)] px-3 py-2 text-xs font-medium text-[var(--os-text-primary)] transition hover:bg-(--os-accent-glow)"
           >
             View Profile
           </button>

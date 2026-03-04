@@ -126,7 +126,7 @@ export function PulseView() {
   );
 
   return (
-    <div className="h-full overflow-y-auto bg-[var(--os-bg)] p-6">
+    <div className="h-full overflow-y-auto bg-(--os-bg) p-6">
       <motion.section
         variants={statContainer}
         initial="hidden"
@@ -135,7 +135,7 @@ export function PulseView() {
       >
         <motion.div
           variants={statItem}
-          className="rounded-lg border border-[var(--os-border-subtle)] bg-[var(--os-surface)] p-4"
+          className="rounded-lg border border-[var(--os-border-subtle)] bg-(--os-surface) p-4"
         >
           <p className="text-[10px] tracking-[0.12em] uppercase text-[var(--os-text-muted)]">
             Total Members
@@ -151,7 +151,7 @@ export function PulseView() {
 
         <motion.div
           variants={statItem}
-          className="rounded-lg border border-[var(--os-border-subtle)] bg-[var(--os-surface)] p-4"
+          className="rounded-lg border border-[var(--os-border-subtle)] bg-(--os-surface) p-4"
         >
           <p className="text-[10px] tracking-[0.12em] uppercase text-[var(--os-text-muted)]">
             Active Today
@@ -167,7 +167,7 @@ export function PulseView() {
 
         <motion.div
           variants={statItem}
-          className="rounded-lg border border-[var(--os-border-subtle)] bg-[var(--os-surface)] p-4"
+          className="rounded-lg border border-[var(--os-border-subtle)] bg-(--os-surface) p-4"
         >
           <p className="text-[10px] tracking-[0.12em] uppercase text-[var(--os-text-muted)]">
             New This Week
@@ -183,7 +183,7 @@ export function PulseView() {
 
         <motion.div
           variants={statItem}
-          className="rounded-lg border border-[var(--os-border-subtle)] bg-[var(--os-surface)] p-4"
+          className="rounded-lg border border-[var(--os-border-subtle)] bg-(--os-surface) p-4"
         >
           <p className="text-[10px] tracking-[0.12em] uppercase text-[var(--os-text-muted)]">
             Churn Risk
@@ -199,11 +199,11 @@ export function PulseView() {
       </motion.section>
 
       <section className="mt-6 flex flex-col gap-4 lg:flex-row">
-        <div className="flex-1 rounded-lg border border-[var(--os-border-subtle)] bg-[var(--os-surface)] p-4">
+        <div className="flex-1 rounded-lg border border-[var(--os-border-subtle)] bg-(--os-surface) p-4">
           <div className="mb-4 flex items-center gap-2">
             <span className="relative flex size-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--os-status-active)] opacity-70" />
-              <span className="relative inline-flex size-2 rounded-full bg-[var(--os-status-active)]" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-(--os-status-active) opacity-70" />
+              <span className="relative inline-flex size-2 rounded-full bg-(--os-status-active)" />
             </span>
             <h2 className="text-sm font-semibold text-[var(--os-text-primary)]">
               Live Activity
@@ -222,8 +222,8 @@ export function PulseView() {
                   transition={{ duration: 0.2 }}
                   className={`flex items-center justify-between gap-3 rounded-md border border-[var(--os-border-subtle)] px-3 py-2 ${
                     event.isNew
-                      ? "border-l-2 border-l-[var(--os-accent)] bg-[var(--os-accent-glow)]"
-                      : "bg-[var(--os-bg)]/40"
+                      ? "border-l-2 border-l-[var(--os-accent)] bg-(--os-accent-glow)"
+                      : "bg-(--os-bg)/40"
                   }`}
                 >
                   <div className="min-w-0 flex items-center gap-3">
@@ -249,7 +249,7 @@ export function PulseView() {
           </motion.ul>
         </div>
 
-        <div className="w-full rounded-lg border border-[var(--os-border-subtle)] bg-[var(--os-surface)] p-4 lg:w-72">
+        <div className="w-full rounded-lg border border-[var(--os-border-subtle)] bg-(--os-surface) p-4 lg:w-72">
           <h2 className="text-sm font-semibold text-[var(--os-text-primary)]">
             Monthly Revenue
           </h2>
@@ -260,7 +260,7 @@ export function PulseView() {
             +${mrrStats.change} this month
           </p>
 
-          <div className="mt-4 rounded-md bg-[var(--os-bg)]/50 p-2">
+          <div className="mt-4 rounded-md bg-(--os-bg)/50 p-2">
             <Sparkline />
           </div>
 

@@ -1,11 +1,21 @@
 "use client";
 
 import { usePanel } from "@/components/panel-context";
+import type { Member } from "@/lib/data/members";
 import { members } from "@/lib/data/members";
 import { StatusBadge } from "@/components/members/status-badge";
 
 export function MembersTable() {
-  const { isOpen, selectedMember, openPanelWithMember } = usePanel();
+  const { isOpen, selectedMember, openPanelWithMember, closePanel } =
+    usePanel();
+
+  const handleRowClick = (member: Member) => {
+    if (isOpen && selectedMember?.id === member.id) {
+      closePanel();
+    } else {
+      openPanelWithMember(member);
+    }
+  };
 
   return (
     <div className="h-full w-full overflow-y-auto overflow-x-hidden p-6 pr-4 md:overflow-x-auto md:pr-6">
@@ -43,10 +53,8 @@ export function MembersTable() {
             return (
               <tr
                 key={member.id}
-                onClick={() => {
-                  openPanelWithMember(member);
-                }}
-                className="cursor-pointer transition-colors hover:bg-[var(--os-accent-glow)]"
+                onClick={() => handleRowClick(member)}
+                className="cursor-pointer transition-colors hover:bg-(--os-accent-glow)"
               >
                 <td
                   className={`border-b border-[var(--os-border-subtle)] px-4 py-3 ${
@@ -84,9 +92,9 @@ export function MembersTable() {
                 </td>
                 <td className="hidden border-b border-[var(--os-border-subtle)] px-4 py-3 md:table-cell">
                   <div className="flex items-center gap-3">
-                    <div className="h-1 w-28 overflow-hidden rounded-full bg-[var(--os-border-subtle)]">
+                    <div className="h-1 w-28 overflow-hidden rounded-full bg-(--os-border-subtle)">
                       <div
-                        className="h-full rounded-full bg-[var(--os-accent)]"
+                        className="h-full rounded-full bg-(--os-accent)"
                         style={{ width: `${member.engagementScore}%` }}
                       />
                     </div>
